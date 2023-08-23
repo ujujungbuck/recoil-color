@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {
+  atom,
+  // useRecoilState,
+  useRecoilValue,
+  // useSetRecoilState,
+  // selector,
+  // selectorFamily,
+} from "recoil";
+
+const rainbow = atom({
+  key: "rainbow",
+  default: ["pink", "orange", "purple", "blue", "green", "yellow"],
+});
 
 function App() {
+  const rainbowColors = useRecoilValue(rainbow);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Recoil로 컬러팔레트 구현</h1>
+      {rainbowColors.map((bgColor) => (
+        <div
+          style={{
+            backgroundColor: `${bgColor}`,
+            width: "100%",
+            height: "7vh",
+          }}
+        />
+      ))}
+    </>
   );
 }
 
